@@ -2,6 +2,7 @@ package com.example.sportshopp.domain.model.view;
 
 
 import com.example.sportshopp.domain.entity.CategoryName;
+import com.example.sportshopp.domain.entity.Gender;
 
 import java.math.BigDecimal;
 
@@ -11,6 +12,7 @@ public class ProductViewModel {
     private BigDecimal price;
     private CategoryName categoryName;
     private String imgUrl;
+    private Gender gender;
 
     public ProductViewModel() {
     }
@@ -55,4 +57,11 @@ public class ProductViewModel {
         this.categoryName = categoryName;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 }

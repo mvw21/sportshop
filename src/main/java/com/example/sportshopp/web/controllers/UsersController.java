@@ -4,6 +4,7 @@ import com.example.sportshopp.domain.entity.User;
 import com.example.sportshopp.domain.model.binding.UserLoginBindingModel;
 import com.example.sportshopp.domain.model.binding.UserRegisterBindingModel;
 import com.example.sportshopp.domain.model.service.UserServiceModel;
+import com.example.sportshopp.domain.model.view.UserProfileViewModel;
 import com.example.sportshopp.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/users")
 public class UsersController extends BaseController {
@@ -123,5 +126,12 @@ public class UsersController extends BaseController {
 
         return "redirect:/users/login";
 
+    }
+
+    @GetMapping("/profile")
+    public ModelAndView profile(ModelAndView modelAndView){
+        modelAndView
+                .addObject("model",UserProfileViewModel.class);
+        return super.view("users/profile", modelAndView);
     }
 }
