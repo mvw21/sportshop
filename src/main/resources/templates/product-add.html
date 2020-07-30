@@ -41,7 +41,7 @@
             </div>
             <select class="browser-default custom-select" id="category" name="category">
                 <option value="">Select category</option>
-                <option th:each="o : ${T(sports.sportshop.domain.entity.CategoryName).values()}"
+                <option th:each="o : ${T(com.example.sportshopp.domain.entity.CategoryName).values()}"
                         th:text="${o}" th:value="${o}">Food</option>
                 <!--                <option value="DRINK">Drink</option>-->
                 <!--                <option value="HOUSEHOLD">Household</option>-->
