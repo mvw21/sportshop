@@ -3,10 +3,10 @@ package com.example.sportshopp.web.controllers;
 import com.example.sportshopp.domain.entity.CategoryName;
 import com.example.sportshopp.domain.model.binding.ProductAddBindingModel;
 import com.example.sportshopp.domain.model.service.ProductServiceModel;
+import com.example.sportshopp.domain.model.view.ProductViewModel;
 import com.example.sportshopp.service.CategoryService;
 import com.example.sportshopp.service.ProductService;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/products")
@@ -75,6 +77,34 @@ public class ProductsController extends BaseController{
 
         return "redirect:/";
 
+    }
+
+    @GetMapping("/men")
+    public String men(Model model, HttpSession session){
+
+//        List<ProductServiceModel> pr = this.productService.findByGender("Male");
+
+//        ProductServiceModel pr = this.productService.findByGender("Male").get(0);
+//        ProductServiceModel pr1 = this.productService.findByGender("Male").get(20);
+
+
+       try{
+           List<ProductViewModel> products = this.productService.findByType("Male")
+                   .stream()
+                   .map(product -> {
+                       ProductViewModel productViewModel = this.modelMapper.map(product, ProductViewModel.class);
+                       productViewModel.setImgUrl(String.format("/img/%s.jpg", product.getCategory().getCategoryName().name().toLowerCase()));
+                       return productViewModel;
+                   }).collect(Collectors.toList());
+
+
+           model.addAttribute("male", products);
+           return "product-male";
+       }catch(Exception ex) {
+           ex.printStackTrace();
+       }
+
+        return "product-male";
     }
 
 }

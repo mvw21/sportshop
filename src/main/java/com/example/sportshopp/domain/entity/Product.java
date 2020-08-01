@@ -15,7 +15,8 @@ public class Product extends BaseEntity{
     private String description;
     private BigDecimal price;
     private Category category;
-    private Gender gender;
+    private String type;
+
 
     public Product() {
     }
@@ -59,13 +60,22 @@ public class Product extends BaseEntity{
         this.category = category;
     }
 
-    @Column(name = "gender",nullable = false)
-    @Enumerated
-    public Gender getGender() {
-        return gender;
+//    @Enumerated(value = EnumType.STRING)
+//    @Column(name = "gender",nullable = false)
+//    public Gender getGender() {
+//        return gender;
+//    }
+//
+//    public void setGender(Gender gender) {
+//        this.gender = gender;
+//    }
+
+
+    public String getType() {
+        return type;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public void setType(String type) {
+        this.type = type;
     }
 }

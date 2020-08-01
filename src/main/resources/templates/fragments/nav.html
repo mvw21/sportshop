@@ -49,6 +49,17 @@
         <a class="nav-link text-white active h5" href="/products/add">Man Clothes</a>
         <a class="nav-link text-white active h5" href="/products/add">Women Clothes</a>
         <a class="nav-link text-white active h5" href="/products/add">Kids clothes</a>
+        <a class="nav-link text-white active h5" href="/users/profile">Products</a>
+        <div class="dropdown">
+            <button class="dropbtn">Products
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/products/men">Men</a>
+                <a href="#">Women</a>
+                <a href="#">Other</a>
+            </div>
+        </div>
         <a class="nav-link text-white active h5" href="/users/profile">Profile</a>
         <a class="nav-link text-white active h5" href="/products/add">Edit Profile</a>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
@@ -66,6 +77,7 @@
                 </li>
             </ul>
         </div>
+
     </th:block>
 
 

@@ -49,24 +49,25 @@
             </select>
             <small th:each="e : ${#fields.errors('category')}" th:text="${e}" class="text-danger">Category error message</small>
 
-            <div class="text-white label-holder d-flex justify-content-center">
-                <label for="category" class="h4 mb-2">Gender</label>
+                        <div class="text-white label-holder d-flex justify-content-center">
+                            <label for="type" class="h4 mb-2">Type</label>
+                        </div>
+                        <select class="browser-default custom-select" id="type" name="type">
+                            <option value="">Select type</option>
+                            <option th:each="o : ${T(com.example.sportshopp.domain.entity.Type).values()}"
+                                    th:text="${o}" th:value="${o}">Type</option>
+                            <!--                <option value="DRINK">Drink</option>-->
+                            <!--                <option value="HOUSEHOLD">Household</option>-->
+                            <!--                <option value="OTHER">Other</option>  				-->
+                        </select>
+                        <small th:each="e : ${#fields.errors('type')}" th:text="${e}" class="text-danger">Type error message</small>
+
+                    </div>
+
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-warning  mb-3" value="Register">Add product</button>
             </div>
-            <select class="browser-default custom-select" id="gender" name="gender">
-                <option value="">Select gender</option>
-                <option th:each="o : ${T(com.example.sportshopp.domain.entity.Gender).values()}"
-                        th:text="${o}" th:value="${o}">Food</option>
-                <!--                <option value="DRINK">Drink</option>-->
-                <!--                <option value="HOUSEHOLD">Household</option>-->
-                <!--                <option value="OTHER">Other</option>  				-->
-            </select>
-            <small th:each="e : ${#fields.errors('gender')}" th:text="${e}" class="text-danger">Gender error message</small>
 
-        </div>
-
-        <div class="button-holder d-flex justify-content-center">
-            <button type="submit" class="btn btn-warning  mb-3" value="Register">Add product</button>
-        </div>
     </form>
 </main>
 

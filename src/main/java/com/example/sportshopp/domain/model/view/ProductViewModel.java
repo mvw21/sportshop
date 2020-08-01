@@ -1,18 +1,17 @@
 package com.example.sportshopp.domain.model.view;
 
 
-import com.example.sportshopp.domain.entity.CategoryName;
-import com.example.sportshopp.domain.entity.Gender;
-
 import java.math.BigDecimal;
 
 public class ProductViewModel {
     private String id;
     private String name;
+    private String description;
     private BigDecimal price;
-    private CategoryName categoryName;
+    private String category;
     private String imgUrl;
-    private Gender gender;
+    private String type;
+//    private Gender type;
 
     public ProductViewModel() {
     }
@@ -49,19 +48,36 @@ public class ProductViewModel {
         this.imgUrl = imgUrl;
     }
 
-    public CategoryName getCategoryName() {
-        return categoryName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCategoryName(CategoryName categoryName) {
-        this.categoryName = categoryName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Gender getGender() {
-        return gender;
+    public String getCategory() {
+        return category;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+//    public Gender getGender() {
+//        return type;
+//    }
+//
+//    public void setGender(Gender type) {
+//        this.type = type;
+//    }
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

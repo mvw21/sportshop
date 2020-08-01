@@ -1,7 +1,5 @@
 package com.example.sportshopp.domain.model.service;
 
-import com.example.sportshopp.domain.entity.Gender;
-
 import java.math.BigDecimal;
 
 public class ProductServiceModel extends BaseServiceModel{
@@ -10,7 +8,9 @@ public class ProductServiceModel extends BaseServiceModel{
     private String description;
     private BigDecimal price;
     private CategoryServiceModel category;
-    private Gender gender;
+    private String type;
+//    private String category;
+//    private Gender type;
 
     public ProductServiceModel() {
     }
@@ -47,11 +47,20 @@ public class ProductServiceModel extends BaseServiceModel{
         this.category = category;
     }
 
-    public Gender getGender() {
-        return gender;
+//    public Gender getGender() {
+//        return type;
+//    }
+//
+//    public void setGender(Gender type) {
+//        this.type = type;
+//    }
+
+
+    public String getType() {
+        return type;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public void setType(String type) {
+        this.type = type;
     }
 }

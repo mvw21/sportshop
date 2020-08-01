@@ -27,5 +27,6 @@ public interface ProductService {
 
     List<ProductServiceModel> findAllByCategory(String categoryName);
 
+    List<ProductServiceModel> findByType(String type);
 
 }

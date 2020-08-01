@@ -6,6 +6,7 @@ import com.example.sportshopp.domain.entity.CategoryName;
 import com.example.sportshopp.domain.entity.Product;
 import com.example.sportshopp.domain.model.service.ProductServiceModel;
 import com.example.sportshopp.domain.model.view.ProductViewModel;
+import com.example.sportshopp.repository.CategoryRepository;
 import com.example.sportshopp.repository.ProductRepository;
 import com.example.sportshopp.service.CategoryService;
 import com.example.sportshopp.service.ProductService;
@@ -23,11 +24,13 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
     private final ModelMapper modelMapper;
+    private final CategoryRepository categoryRepository;
 
-    public ProductServiceImpl(ProductRepository productRepository, CategoryService categoryService, ModelMapper modelMapper) {
+    public ProductServiceImpl(ProductRepository productRepository, CategoryService categoryService, ModelMapper modelMapper, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.categoryService = categoryService;
         this.modelMapper = modelMapper;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -104,6 +107,18 @@ public class ProductServiceImpl implements ProductService {
         return this.productRepository.findAllByCategory(category).stream()
                 .map(product -> this.modelMapper.map(product, ProductServiceModel.class))
                 .collect(Collectors.toList());
+    }
+
+
+
+    @Override
+    public List<ProductServiceModel> findByType(String type) {
+        return this.productRepository.findAllByType(type)
+                .stream()
+//                .filter(x-> x.getGender().name().equalsIgnoreCase(gender.name()))
+                .map(product -> this.modelMapper.map(product, ProductServiceModel.class))
+                .collect(Collectors.toList());
+
     }
 
 }

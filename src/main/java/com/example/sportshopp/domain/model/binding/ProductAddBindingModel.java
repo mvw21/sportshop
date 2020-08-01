@@ -1,6 +1,7 @@
 package com.example.sportshopp.domain.model.binding;
 
 
+import com.example.sportshopp.domain.model.service.CategoryServiceModel;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.DecimalMin;
@@ -12,7 +13,7 @@ public class ProductAddBindingModel {
     private String description;
     private BigDecimal price;
     private String category;
-    private String gender;
+    private String type;
 
     public ProductAddBindingModel() {
     }
@@ -53,12 +54,12 @@ public class ProductAddBindingModel {
         this.category = category;
     }
 
-    @NotNull(message = "Enter valid gender! (Male/Female)")
-    public String getGender() {
-        return gender;
+    @NotNull(message = "Enter valid type! (Male/Female)")
+    public String getType() {
+        return type;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setType(String type) {
+        this.type = type;
     }
 }

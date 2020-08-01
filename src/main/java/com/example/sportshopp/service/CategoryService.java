@@ -6,6 +6,7 @@ import com.example.sportshopp.domain.model.service.CategoryServiceModel;
 
 public interface CategoryService {
     void initCategories();
+
     CategoryServiceModel findByCategoryName(CategoryName categoryName);
     CategoryServiceModel findByName(CategoryName name);
     Category find(CategoryName categoryName);
