@@ -1,9 +1,11 @@
 package com.example.sportshopp.web.controllers;
 
 import com.example.sportshopp.domain.entity.User;
+import com.example.sportshopp.domain.model.binding.UserEditBindingModel;
 import com.example.sportshopp.domain.model.binding.UserLoginBindingModel;
 import com.example.sportshopp.domain.model.binding.UserRegisterBindingModel;
 import com.example.sportshopp.domain.model.service.UserServiceModel;
+import com.example.sportshopp.domain.model.view.UserEditViewModel;
 import com.example.sportshopp.domain.model.view.UserProfileViewModel;
 import com.example.sportshopp.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -33,19 +35,15 @@ public class UsersController extends BaseController {
     }
 
     @GetMapping("/login")
-//    @PreAuthorize("isAnonymous()")
-//    @PageTitle("Login")
     public String login(Model model) {
         if (!model.containsAttribute("userLoginBindingModel")) {
             model.addAttribute("userLoginBindingModel", new UserLoginBindingModel());
         }
         return "users/login";
     }
-    //todo da go probvam s ModelAndView
+
 
     @PostMapping("/login")
-//    @PreAuthorize("isAnonymous()")
-//    @PageTitle("Login")
     public String loginConfirm(@Valid @ModelAttribute("userLoginBindingModel")
                                        UserLoginBindingModel userLoginBindingModel,
                                BindingResult bindingResult,
@@ -71,30 +69,7 @@ public class UsersController extends BaseController {
         return "home/home";
     }
 
-
-//    @InitBinder
-//    private void initBinder(WebDataBinder webDataBinder) {
-//        webDataBinder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-//    }
-
-
-//    last used
-//    @PostMapping("/register")
-//    @PreAuthorize("isAnonymous()")
-//    @PageTitle("Register")
-//    public ModelAndView registerConfirm(@ModelAttribute UserRegisterBindingModel model) {
-//        if (!model.getPassword().equals(model.getConfirmPassword())) {
-//            return super.view("users/register");
-//        }
-//        this.userService.register(this.modelMapper.map(model, UserServiceModel.class));
-//
-//        return super.view("users/login",);
-//    }
-
-
     @GetMapping("/register")
-//    @PreAuthorize("isAnonymous()")
-//    @PageTitle("Register")
     public String register(Model model) {
         if (!model.containsAttribute("userRegisterBindingModel")) {
             model.addAttribute("userRegisterBindingModel", new UserRegisterBindingModel());
@@ -105,8 +80,6 @@ public class UsersController extends BaseController {
 
 
     @PostMapping("/register")
-//    @PreAuthorize("isAnonymous()")
-//    @PageTitle("Register")
     public String registerConfirm(@Valid @ModelAttribute("userRegisterBindingModel")
                                           UserRegisterBindingModel userRegisterBindingModel,
                                   BindingResult bindingResult,
@@ -133,5 +106,32 @@ public class UsersController extends BaseController {
         modelAndView
                 .addObject("model",UserProfileViewModel.class);
         return super.view("users/profile", modelAndView);
+    }
+
+    @GetMapping("/edit-profile")
+    public ModelAndView editProfile(HttpSession session,ModelAndView modelAndView, @ModelAttribute(name = "model") UserEditViewModel model) {
+        UserServiceModel userServiceModel = (UserServiceModel)(session.getAttribute("user"));
+        model = this.modelMapper.map(userServiceModel, UserEditViewModel.class);
+        model.setPassword(null);
+        modelAndView.addObject("model", model);
+
+        return super.view("users/edit-profile", modelAndView);
+    }
+
+    @PostMapping("/edit-profile")
+    public ModelAndView editProfileConfirm(HttpSession session, ModelAndView modelAndView, @ModelAttribute UserEditBindingModel model) {
+        if (!model.getPassword().equals(model.getConfirmPassword())){
+            return super.view("users/edit-profile");
+        }
+
+        UserServiceModel newUser = this.userService.editUserProfile(this.modelMapper.map(model, UserServiceModel.class), model.getOldPassword());
+        session.setAttribute("user",newUser);
+        return super.redirect("/users/profile");
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession){
+        httpSession.invalidate();
+        return "redirect:/";
     }
 }

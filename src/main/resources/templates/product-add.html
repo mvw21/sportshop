@@ -43,9 +43,7 @@
                 <option value="">Select category</option>
                 <option th:each="o : ${T(com.example.sportshopp.domain.entity.CategoryName).values()}"
                         th:text="${o}" th:value="${o}">Food</option>
-                <!--                <option value="DRINK">Drink</option>-->
-                <!--                <option value="HOUSEHOLD">Household</option>-->
-                <!--                <option value="OTHER">Other</option>  				-->
+
             </select>
             <small th:each="e : ${#fields.errors('category')}" th:text="${e}" class="text-danger">Category error message</small>
 
@@ -56,9 +54,7 @@
                             <option value="">Select type</option>
                             <option th:each="o : ${T(com.example.sportshopp.domain.entity.Type).values()}"
                                     th:text="${o}" th:value="${o}">Type</option>
-                            <!--                <option value="DRINK">Drink</option>-->
-                            <!--                <option value="HOUSEHOLD">Household</option>-->
-                            <!--                <option value="OTHER">Other</option>  				-->
+
                         </select>
                         <small th:each="e : ${#fields.errors('type')}" th:text="${e}" class="text-danger">Type error message</small>
 
@@ -68,7 +64,11 @@
                 <button type="submit" class="btn btn-warning  mb-3" value="Register">Add product</button>
             </div>
 
+        <div class="randomtext" th:text="${session.name}">John Doe</div>
     </form>
+
+    <div class="randomtext" th:text="${session.name}">John Doe</div>
+
 </main>
 
 <footer class="footer bg-transparent  py-2">

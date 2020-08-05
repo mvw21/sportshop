@@ -9,10 +9,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
     private final ModelMapper modelMapper;
@@ -25,10 +27,13 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void seedRolesInDb() {
-        if (this.roleRepository.count() == 0){
-            this.roleRepository.saveAndFlush(new Role("ROLE_ADMIN"));
-            this.roleRepository.saveAndFlush(new Role("ROLE_ROOT"));
-            this.roleRepository.saveAndFlush(new Role("ROLE_USER"));
+        if (this.roleRepository.count() == 0) {
+            Role admin = new Role();
+            admin.setAuthority("ADMIN");
+            Role user = new Role();
+            user.setAuthority("USER");
+            this.roleRepository.saveAndFlush(admin);
+            this.roleRepository.saveAndFlush(user);
         }
     }
 

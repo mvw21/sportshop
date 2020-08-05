@@ -18,6 +18,7 @@ public class Product extends BaseEntity{
     private String type;
 
 
+
     public Product() {
     }
 
@@ -78,4 +79,7 @@ public class Product extends BaseEntity{
     public void setType(String type) {
         this.type = type;
     }
+
+
+
 }

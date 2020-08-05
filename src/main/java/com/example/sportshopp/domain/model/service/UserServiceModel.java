@@ -1,6 +1,9 @@
 package com.example.sportshopp.domain.model.service;
 
 
+import com.example.sportshopp.domain.entity.Product;
+
+import java.util.List;
 import java.util.Set;
 
 public class UserServiceModel extends BaseServiceModel{
@@ -8,7 +11,9 @@ public class UserServiceModel extends BaseServiceModel{
     private String username;
     private String password;
     private String email;
-    private Set<RoleServiceModel> authorities;
+//    private Set<RoleServiceModel> authorities;
+    private RoleServiceModel role;
+    private List<Product> cart;
 
     public UserServiceModel() {
     }
@@ -37,11 +42,27 @@ public class UserServiceModel extends BaseServiceModel{
         this.email = email;
     }
 
-    public Set<RoleServiceModel> getAuthorities() {
-        return authorities;
+    public RoleServiceModel getRole() {
+        return role;
     }
 
-    public void setAuthorities(Set<RoleServiceModel> authorities) {
-        this.authorities = authorities;
+    public void setRole(RoleServiceModel role) {
+        this.role = role;
+    }
+
+    //    public Set<RoleServiceModel> getAuthorities() {
+//        return authorities;
+//    }
+//
+//    public void setAuthorities(Set<RoleServiceModel> authorities) {
+//        this.authorities = authorities;
+//    }
+
+    public List<Product> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<Product> cart) {
+        this.cart = cart;
     }
 }

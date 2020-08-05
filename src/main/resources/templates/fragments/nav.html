@@ -1,30 +1,7 @@
 <th:block xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-    <!--        <a class="nav-link text-white active h5" href="/">Shopping List App</a>-->
-    <!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"-->
-    <!--                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-    <!--            <span class="navbar-toggler-icon"></span>-->
-    <!--        </button>-->
-    <!--        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">-->
-    <!--            <ul class="navbar-nav row">-->
-    <!--                <th:block th:if="${session.isEmpty()}">-->
-    <!--                    <li class="nav-item col-md-4">-->
-    <!--                        <a class="nav-link text-white active h5" href="/users/login">Login</a>-->
-    <!--                    </li>-->
-    <!--                    <li class="nav-item col-md-4">-->
-    <!--                        <a class="nav-link text-white active h5" href="/users/register">Register</a>-->
-    <!--                    </li>-->
-    <!--                </th:block>-->
-    <!--                <th:block th:unless="${session.isEmpty()}">-->
-    <!--                    <a class="nav-link text-white active h5" href="/products/add">Add Product</a>-->
-    <!--                    <li class="nav-item col-md-4">-->
-    <!--                        <a class="nav-link text-white active h5" href="/users/logout">Logout</a>-->
-    <!--                    </li>-->
-    <!--                </th:block>-->
-    <!--            </ul>-->
-    <!--        </div>-->
 
     <th:block th:if="${session.isEmpty()}">
-        <a class="nav-link text-white active h5" href="/">Shopping List App</a>
+        <a class="nav-link text-white active h5" href="/">SportShop App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,35 +18,62 @@
         </div>
     </th:block>
 
-
-
     <th:block th:unless="${session.isEmpty()}">
-        <a class="nav-link text-white active h5" href="/home">Home</a>
-        <a class="nav-link text-white active h5" href="/products/add">Promos</a>
-        <a class="nav-link text-white active h5" href="/products/add">Man Clothes</a>
-        <a class="nav-link text-white active h5" href="/products/add">Women Clothes</a>
-        <a class="nav-link text-white active h5" href="/products/add">Kids clothes</a>
-        <a class="nav-link text-white active h5" href="/users/profile">Products</a>
-        <div class="dropdown">
-            <button class="dropbtn">Products
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="/products/men">Men</a>
-                <a href="#">Women</a>
-                <a href="#">Other</a>
-            </div>
-        </div>
-        <a class="nav-link text-white active h5" href="/users/profile">Profile</a>
-        <a class="nav-link text-white active h5" href="/products/add">Edit Profile</a>
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <a class="nav-link text-white active h5" href="/products/add">Admin</a>
-        </div>
-        <a class="nav-link text-white active h5" href="/products/add">Add Product</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      <div th:object="${session.user}" class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+          <ul class="navbar-nav row">
+          <li>
+              <a class="nav-link text-white active h5" href="/home">Home</a>
+          </li>
+          <li>
+              <a class="nav-link text-white active h5" href="/products/men">Man Clothes</a>
+          </li>
+          <li>
+              <a class="nav-link text-white active h5" href="/products/women">Women Clothes</a>
+          </li>
+          <li>
+              <a class="nav-link text-white active h5" href="/products/kids">Kids clothes</a>
+          </li>
+              <li>
+                  <a class="nav-link text-white active h5" href="/products/other">Other clothes</a>
+              </li>
+              <li>
+                  <a class="nav-link text-white active h5" href="/products/add">Add Product</a>
+              </li>
+
+          <li>
+              <div class="dropdown">
+                  <button class="dropbtn">Products
+                      <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                      <a href="/products/men">Men</a>
+                      <a href="/products/women">Women</a>
+                      <a href="/products/kids">Kids</a>
+                      <a href="/products/other">Other</a>
+                  </div>
+              </div>
+          </li>
+          <li>
+              <a  class="nav-link text-white active h5" href="/products/add">Admin</a>
+          </li>
+              <li>
+                  <a class="nav-link text-white active h5" href="/users/profile">Profile</a>
+              </li>
+              <li>
+                  <a class="nav-link text-white active h5" href="/roles/add">Roles</a>
+              </li>
+          <li>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+          </li>
+              <li>
+                  <a class="nav-link text-white active h5" href="/cart/cart">Cart</a>
+              </li>
+
+</ul>
+      </div>
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav row">
                 <li class="nav-item col-md-4">
@@ -78,8 +82,8 @@
             </ul>
         </div>
 
-    </th:block>
+    </div>
 
 
-
+</th:block>
 </th:block>

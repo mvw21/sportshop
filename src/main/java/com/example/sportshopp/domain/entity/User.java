@@ -1,20 +1,27 @@
 package com.example.sportshopp.domain.entity;
 
 
+import com.example.sportshopp.domain.model.view.ProductViewModel;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity implements UserDetails {
-
+public class User extends BaseEntity  {
+//    implement userDetails
     private String username;
     private String password;
     private String email;
-    private Set<Role> authorities;
+//    private Set<Role> authorities;
+    private List<Product> cart;
+    private Role role;
+
 
     public User() {
     }
@@ -47,40 +54,57 @@ public class User extends BaseEntity implements UserDetails {
         this.email = email;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    public Set<Role> getAuthorities() {
-        return authorities;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "users_roles",
+//            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+//    public Set<Role> getAuthorities() {
+//        return authorities;
+//    }
+//
+//    public void setAuthorities(Set<Role> authorities) {
+//        this.authorities = authorities;
+//    }
+
+//    @Override
+//    @Transient
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    @Transient
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//
+//    @Override
+//    @Transient
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    @Transient
+//    public boolean isEnabled() {
+//        return true;
+//    }
+//
+    @OneToMany
+    public List<Product> getCart() {
+        return cart;
     }
 
-    public void setAuthorities(Set<Role> authorities) {
-        this.authorities = authorities;
+    public void setCart(List<Product> cart) {
+        this.cart = cart;
+    }
+//
+    @ManyToOne(targetEntity = Role.class, fetch = FetchType.EAGER)
+    public Role getRole() {
+        return role;
     }
 
-    @Override
-    @Transient
-    public boolean isAccountNonExpired() {
-        return true;
+    public void setRole(Role role) {
+        this.role = role;
     }
-
-    @Override
-    @Transient
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    @Transient
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    @Transient
-    public boolean isEnabled() {
-        return true;
-    }
-
 }

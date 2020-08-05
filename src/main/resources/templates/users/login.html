@@ -6,21 +6,6 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-lg bg-nav rounded">
-        <!--			<a class="nav-link text-white active h5" href="/">Shopping List App</a>-->
-        <!--			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"-->
-        <!--                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-        <!--                <span class="navbar-toggler-icon"></span>-->
-        <!--            </button>-->
-        <!--            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">-->
-        <!--                <ul class="navbar-nav row">-->
-        <!--                    <li class="nav-item col-md-4">-->
-        <!--                        <a class="nav-link text-white active h5" href="/">Login</a>-->
-        <!--                    </li>-->
-        <!--                    <li class="nav-item col-md-4">-->
-        <!--                        <a class="nav-link text-white active h5" href="/">Register</a>-->
-        <!--					</li>-->
-        <!--				</ul>-->
-        <!--			</div>-->
         <th:block th:include="~{/fragments/nav}"></th:block>
     </nav>
 </header>
@@ -29,9 +14,6 @@
     <hr class="hr-3 w-25 bg-white"/>
     <form class="mx-auto w-25 bg-blur"
           th:object="${userLoginBindingModel}" th:action="@{/users/login}" method="POST">
-<!--        <small th:each="e : ${#fields.errors()}" th:text="${e}" class="text-danger">Error message</small>-->
-<!--        <br/>-->
-<!--        <small th:if="${notFound}" class="text-danger">Incorrect username or password!</small>-->
         <div class="form-group">
             <div class="label-holder text-white d-flex justify-content-center">
                 <label for="username" class="h3 mb-2">Username</label>
