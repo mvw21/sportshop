@@ -86,10 +86,7 @@ public class ProductsController extends BaseController{
     public String men(Model model, HttpSession session){
         UserServiceModel user =this.modelMapper.map(session.getAttribute("user"),UserServiceModel.class);
 
-//        List<ProductServiceModel> pr = this.productService.findByGender("Male");
 
-//        ProductServiceModel pr = this.productService.findByGender("Male").get(0);
-//        ProductServiceModel pr1 = this.productService.findByGender("Male").get(20);
 
 
 
@@ -117,21 +114,7 @@ public class ProductsController extends BaseController{
         UserServiceModel user =this.modelMapper.map(httpSession.getAttribute("user"),UserServiceModel.class);
 //        user.service.addproduct , otivash v sarvice-a kadeto pravish add metod da dobavq product v lista na usera + namapvaniq
         ProductServiceModel productServiceModel = this.modelMapper.map(productViewModel, ProductServiceModel.class);
-//        this.productService.addProductToCart(user,productServiceModel);
 
-//        int n = user.getCart().size();
-//        List<ProductViewModel> cart = user.getCart()
-//                .stream().map(product -> {
-//                    ProductViewModel productViewModel = this.modelMapper.map(product, ProductViewModel.class);
-//                    productViewModel.setImgUrl(String.format("/img/%s.png", product.getCategory().getCategoryName().name().toLowerCase()));
-//                    return productViewModel;
-//                })
-//                .collect(Collectors.toList());
-//        return "";
-//
-//        ProductServiceModel product = this.modelMapper.map(productAddBindingModel, ProductServiceModel.class);
-//        product.setCategory(this.categoryService.findByName(CategoryName.valueOf(productAddBindingModel.getCategory())));
-//        this.productService.addProduct(product);
             return "home/home";
 
     }
@@ -139,13 +122,6 @@ public class ProductsController extends BaseController{
     @GetMapping("/women")
     public String female(Model model, HttpSession session){
         UserServiceModel user =this.modelMapper.map(session.getAttribute("user"),UserServiceModel.class);
-
-//        List<ProductServiceModel> pr = this.productService.findByGender("Male");
-
-//        ProductServiceModel pr = this.productService.findByGender("Male").get(0);
-//        ProductServiceModel pr1 = this.productService.findByGender("Male").get(20);
-
-
 
         List<ProductViewModel> products = this.productService.findByType("Female")
                 .stream()
@@ -169,23 +145,9 @@ public class ProductsController extends BaseController{
     public String femalePost(HttpSession httpSession,@ModelAttribute("i")ProductViewModel productViewModel){
 
         UserServiceModel user =this.modelMapper.map(httpSession.getAttribute("user"),UserServiceModel.class);
-//        user.service.addproduct , otivash v sarvice-a kadeto pravish add metod da dobavq product v lista na usera + namapvaniq
         ProductServiceModel productServiceModel = this.modelMapper.map(productViewModel, ProductServiceModel.class);
-//        this.productService.addProductToCart(user,productServiceModel);
 
-//        int n = user.getCart().size();
-//        List<ProductViewModel> cart = user.getCart()
-//                .stream().map(product -> {
-//                    ProductViewModel productViewModel = this.modelMapper.map(product, ProductViewModel.class);
-//                    productViewModel.setImgUrl(String.format("/img/%s.png", product.getCategory().getCategoryName().name().toLowerCase()));
-//                    return productViewModel;
-//                })
-//                .collect(Collectors.toList());
-//        return "";
-//
-//        ProductServiceModel product = this.modelMapper.map(productAddBindingModel, ProductServiceModel.class);
-//        product.setCategory(this.categoryService.findByName(CategoryName.valueOf(productAddBindingModel.getCategory())));
-//        this.productService.addProduct(product);
+
         return "home/home";
 
     }
@@ -193,13 +155,6 @@ public class ProductsController extends BaseController{
     @GetMapping("/kids")
     public String kids(Model model, HttpSession session){
         UserServiceModel user =this.modelMapper.map(session.getAttribute("user"),UserServiceModel.class);
-
-//        List<ProductServiceModel> pr = this.productService.findByGender("Male");
-
-//        ProductServiceModel pr = this.productService.findByGender("Male").get(0);
-//        ProductServiceModel pr1 = this.productService.findByGender("Male").get(20);
-
-
 
         List<ProductViewModel> products = this.productService.findByType("Kids")
                 .stream()
@@ -223,23 +178,8 @@ public class ProductsController extends BaseController{
     public String kidsPost(HttpSession httpSession,@ModelAttribute("i")ProductViewModel productViewModel){
 
         UserServiceModel user =this.modelMapper.map(httpSession.getAttribute("user"),UserServiceModel.class);
-//        user.service.addproduct , otivash v sarvice-a kadeto pravish add metod da dobavq product v lista na usera + namapvaniq
         ProductServiceModel productServiceModel = this.modelMapper.map(productViewModel, ProductServiceModel.class);
-//        this.productService.addProductToCart(user,productServiceModel);
 
-//        int n = user.getCart().size();
-//        List<ProductViewModel> cart = user.getCart()
-//                .stream().map(product -> {
-//                    ProductViewModel productViewModel = this.modelMapper.map(product, ProductViewModel.class);
-//                    productViewModel.setImgUrl(String.format("/img/%s.png", product.getCategory().getCategoryName().name().toLowerCase()));
-//                    return productViewModel;
-//                })
-//                .collect(Collectors.toList());
-//        return "";
-//
-//        ProductServiceModel product = this.modelMapper.map(productAddBindingModel, ProductServiceModel.class);
-//        product.setCategory(this.categoryService.findByName(CategoryName.valueOf(productAddBindingModel.getCategory())));
-//        this.productService.addProduct(product);
         return "home/home";
 
     }
@@ -247,13 +187,6 @@ public class ProductsController extends BaseController{
     @GetMapping("/other")
     public String other(Model model, HttpSession session){
         UserServiceModel user =this.modelMapper.map(session.getAttribute("user"),UserServiceModel.class);
-
-//        List<ProductServiceModel> pr = this.productService.findByGender("Male");
-
-//        ProductServiceModel pr = this.productService.findByGender("Male").get(0);
-//        ProductServiceModel pr1 = this.productService.findByGender("Male").get(20);
-
-
 
         List<ProductViewModel> products = this.productService.findByType("Other")
                 .stream()
