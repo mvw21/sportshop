@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     private final LogService logService;
     private final ProductService productService;
     private  final RoleRepository roleRepository;
-    //todo  private final UserRegisterValidator userRegisterValidator;
+ 
 
 
     public UserServiceImpl(UsersRepository usersRepository, ModelMapper modelMapper, RoleService roleService, BCryptPasswordEncoder bCryptPasswordEncoder, LogService logService, ProductService productService, RoleRepository roleRepository) {
