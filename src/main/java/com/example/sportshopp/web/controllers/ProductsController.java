@@ -59,7 +59,7 @@ public class ProductsController extends BaseController{
                              RedirectAttributes redirectAttributes,
                              HttpSession httpSession){
 
-        // Security
+       
         if (httpSession.getAttribute("user") == null) {
             return "redirect:/";
         }
@@ -75,8 +75,6 @@ public class ProductsController extends BaseController{
         product.setCategory(this.categoryService.findByName(CategoryName.valueOf(productAddBindingModel.getCategory())));
         this.productService.addProduct(product);
 
-//        this.productService
-//                .addProduct(this.modelMapper.map(productAddBindingModel, ProductServiceModel.class));
 
         return "redirect:/";
 
@@ -112,7 +110,7 @@ public class ProductsController extends BaseController{
     public String menPost(HttpSession httpSession,@ModelAttribute("i")ProductViewModel productViewModel){
 
         UserServiceModel user =this.modelMapper.map(httpSession.getAttribute("user"),UserServiceModel.class);
-//        user.service.addproduct , otivash v sarvice-a kadeto pravish add metod da dobavq product v lista na usera + namapvaniq
+
         ProductServiceModel productServiceModel = this.modelMapper.map(productViewModel, ProductServiceModel.class);
 
             return "home/home";
