@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
 
 
         }else{
-            RoleServiceModel role = this.roleService.findByAuthority("ADMIN");
+            RoleServiceModel role = this.roleService.findByAuthority("USER");
             role.setAuthority("USER");
             user.setCart(new ArrayList<>());
             user.setRole(this.modelMapper.map(role, Role.class));
