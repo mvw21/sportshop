@@ -125,7 +125,7 @@ public class ProductsController extends BaseController{
                 .stream()
                 .map(product -> {
                     ProductViewModel productViewModel = this.modelMapper.map(product, ProductViewModel.class);
-                    productViewModel.setImgUrl(String.format("/img/%s.jpg", product.getCategory().getCategoryName().name().toLowerCase()));
+                    productViewModel.setImgUrl(String.format("/img/f%s.jpg", product.getCategory().getCategoryName().name().toLowerCase()));
                     return productViewModel;
                 }).collect(Collectors.toList());
 
@@ -158,7 +158,7 @@ public class ProductsController extends BaseController{
                 .stream()
                 .map(product -> {
                     ProductViewModel productViewModel = this.modelMapper.map(product, ProductViewModel.class);
-                    productViewModel.setImgUrl(String.format("/img/%s.jpg", product.getCategory().getCategoryName().name().toLowerCase()));
+                    productViewModel.setImgUrl(String.format("/img/k%s.jpg", product.getCategory().getCategoryName().name().toLowerCase()));
                     return productViewModel;
                 }).collect(Collectors.toList());
 
