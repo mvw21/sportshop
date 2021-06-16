@@ -29,8 +29,8 @@ public class HomeController extends BaseController{
     public String home(HttpSession httpSession){
         UserServiceModel user =this.modelMapper.map(httpSession.getAttribute("user"),UserServiceModel.class);
         httpSession.setAttribute("name", user.getUsername());
-        boolean rolezA = user.getRole().getAuthority().equals("ADMIN");
-        httpSession.setAttribute("rolezA",rolezA);
+        boolean userIsAdmin = user.getRole().getAuthority().equals("ADMIN");
+        httpSession.setAttribute("userIsAdmin",userIsAdmin);
         httpSession.setAttribute("user",user);
         return "home/home";
     }

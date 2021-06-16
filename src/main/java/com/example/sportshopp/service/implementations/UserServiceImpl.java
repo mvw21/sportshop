@@ -49,6 +49,8 @@ public class UserServiceImpl implements UserService {
         this.roleRepository = roleRepository;
     }
 
+
+
     @Override
     public UserServiceModel register(UserServiceModel userServiceModel) {
 //        this.roleService.seedRolesInDb();
@@ -143,14 +145,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<String> getAllUserNames(String name) {
-        List<String> usernames =
-                this.usersRepository
-                        .findAll()
-                        .stream()
-                        .filter(user -> !user.getUsername().equals(name))
-                        .map(User::getUsername)
-                        .collect(Collectors.toList());
-        return usernames;
+        return this.usersRepository
+                .findAll()
+                .stream()
+                .map(User::getUsername)
+                .filter(username -> !username.equals(name))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -183,6 +183,7 @@ public class UserServiceImpl implements UserService {
         User user = this.usersRepository.findFirstByUsername(username).orElse(null);
         Role newRole = this.modelMapper.map(this.roleService.findByAuthority(role), Role.class);
 
+        assert user != null;
         if (!user.getRole().getAuthority().equals(role)) {
             user.setRole(newRole);
             this.usersRepository.saveAndFlush(user);
