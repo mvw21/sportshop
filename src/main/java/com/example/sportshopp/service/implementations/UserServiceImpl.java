@@ -35,9 +35,7 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final LogService logService;
     private final ProductService productService;
-    private  final RoleRepository roleRepository;
- 
-
+    private final RoleRepository roleRepository;
 
     public UserServiceImpl(UsersRepository usersRepository, ModelMapper modelMapper, RoleService roleService, BCryptPasswordEncoder bCryptPasswordEncoder, LogService logService, ProductService productService, RoleRepository roleRepository) {
         this.usersRepository = usersRepository;
@@ -48,8 +46,6 @@ public class UserServiceImpl implements UserService {
         this.productService = productService;
         this.roleRepository = roleRepository;
     }
-
-
 
     @Override
     public UserServiceModel register(UserServiceModel userServiceModel) {
@@ -63,14 +59,6 @@ public class UserServiceImpl implements UserService {
             this.roleRepository.saveAndFlush(admin);
             this.roleRepository.saveAndFlush(user);
         }
-
-
-//            userServiceModel.setAuthorities(new LinkedHashSet<>());
-
-//            RoleServiceModel roleService = this.roleService.findByAuthority("USER");
-//            userServiceModel.setRole(roleService);
-
-//            userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
 
         User user = this.usersRepository
                 .findByUsername(userServiceModel.getUsername())
@@ -178,6 +166,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserServiceModel> getAllUsers() {
+        return this.usersRepository.findAll()
+                .stream()
+                .map(e-> this.modelMapper.map(e,UserServiceModel.class))
+                .collect(Collectors.toList());
+
+    }
+
+    @Override
     public void changeRole(String username, String role) {
 
         User user = this.usersRepository.findFirstByUsername(username).orElse(null);
@@ -188,6 +185,5 @@ public class UserServiceImpl implements UserService {
             user.setRole(newRole);
             this.usersRepository.saveAndFlush(user);
         }
-
     }
 }

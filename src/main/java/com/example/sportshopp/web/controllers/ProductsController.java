@@ -84,10 +84,6 @@ public class ProductsController extends BaseController{
     public String men(Model model, HttpSession session){
         UserServiceModel user =this.modelMapper.map(session.getAttribute("user"),UserServiceModel.class);
 
-
-
-
-
            List<ProductViewModel> products = this.productService.findByType("Male")
                    .stream()
                    .map(product -> {
@@ -238,11 +234,6 @@ public class ProductsController extends BaseController{
 
     @GetMapping("/buy/{id}")
     public String buy(@PathVariable("id")String id,HttpSession session,Model model){
-
-        UserServiceModel user3 = this.modelMapper.map(session.getAttribute("user"),UserServiceModel.class);
-        String username = user3.getUsername();
-        UserServiceModel realUser1 = this.userService.findByUsername(username);
-
         UserServiceModel user = this.modelMapper.map(session.getAttribute("user"),UserServiceModel.class);
 
         UserServiceModel umodel = this.productService.addProductToCart(user,id,session);

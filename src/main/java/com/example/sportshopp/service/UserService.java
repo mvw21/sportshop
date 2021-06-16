@@ -24,5 +24,7 @@ public interface UserService {
 
     UserServiceModel editUserProfile(UserServiceModel userServiceModel, String oldPassword);
 
+    List<UserServiceModel> getAllUsers();
+
     //login ako trqbva
 }

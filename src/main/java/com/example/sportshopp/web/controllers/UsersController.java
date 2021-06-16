@@ -1,6 +1,5 @@
 package com.example.sportshopp.web.controllers;
 
-import com.example.sportshopp.domain.entity.User;
 import com.example.sportshopp.domain.model.binding.UserEditBindingModel;
 import com.example.sportshopp.domain.model.binding.UserLoginBindingModel;
 import com.example.sportshopp.domain.model.binding.UserRegisterBindingModel;
@@ -19,15 +18,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/users")
 public class UsersController extends BaseController {
 
-
     private final UserService userService;
     private final ModelMapper modelMapper;
-
 
     public UsersController(UserService userService, ModelMapper mapper) {
         this.userService = userService;

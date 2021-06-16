@@ -116,35 +116,27 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
-
-
     @Override
     public List<ProductServiceModel> findByType(String type) {
         return this.productRepository.findAllByType(type)
                 .stream()
-//                .filter(x-> x.getGender().name().equalsIgnoreCase(gender.name()))
                 .map(product -> this.modelMapper.map(product, ProductServiceModel.class))
                 .collect(Collectors.toList());
-
     }
 
     @Override
     public UserServiceModel addProductToCart(UserServiceModel user, String id, HttpSession httpSession) {
         Product product = this.productRepository.findById(id).orElse(null);
 
-//        Product product = this.modelMapper.map(model, Product.class);
-//        Optional<User> loggedUser = this.usersRepository.findByUsername(user.getUsername());
         User loggedUser = this.modelMapper.map(user,User.class);
         User realUser = this.usersRepository.findByUsername(loggedUser.getUsername()).orElse(null);
         assert realUser != null;
         realUser.getCart().add(product);
 
-
-
         httpSession.setAttribute("user",realUser);
         this.usersRepository.saveAndFlush(realUser);
-       //saveAndFlush user ?
-            return this.modelMapper.map(realUser,UserServiceModel.class);
+
+        return this.modelMapper.map(realUser,UserServiceModel.class);
     }
 
 

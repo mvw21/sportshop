@@ -48,10 +48,6 @@ public class CategoryServiceImpl implements CategoryService {
         return this.modelMapper.map(this.categoryRepository.findByCategoryName(name).orElse(null), CategoryServiceModel.class);
     }
 
-
-
-
-
     @Override
     public Category find(CategoryName categoryName) {
         return this.categoryRepository
